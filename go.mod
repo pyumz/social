@@ -1,3 +1,3 @@
-module github.com/pyumz/http_server_golang
+module github.com/pyumz/social
 
 go 1.17

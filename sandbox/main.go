@@ -1,8 +1,10 @@
 package main
 
-import(
-	"fmt",
+import (
+	"fmt"
 	"log"
+
+	database "github.com/pyumz/social/internal"
 )
 
 func main() {
@@ -14,6 +16,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Database exists!, woot!")
+	fmt.Println("Database was created and/or already exists!")
 
 }
