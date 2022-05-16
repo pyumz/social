@@ -7,10 +7,10 @@ import (
 
 func (apiCfg apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
-		Email    string `json:"email`
-		Password string `json:password`
-		Name     string `json:name`
-		Age      int    `json:age`
+		Email    string `json:"email"`
+		Password string `json:"password"`
+		Name     string `json:"name"`
+		Age      int    `json:"age"`
 	}
 
 	decoder := json.NewDecoder(r.Body)
