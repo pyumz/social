@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -35,12 +34,6 @@ func main() {
 	m.HandleFunc("/users", apiCfg.endpointUsersHandler)
 	m.HandleFunc("/users/", apiCfg.endpointUsersHandler)
 
-	// fmt.Println("HandleFunc method called ")
-	// http.HandleFunc("/", testHandler)
-
-	// fmt.Println("HandleFunc Error method called")
-	// http.HandleFunc("/err", testErrHandler)
-
 	const addr = "localhost:8081"
 
 	srv := http.Server{
@@ -51,19 +44,9 @@ func main() {
 	}
 
 	fmt.Println("listening on", srv.Addr)
-	http.ListenAndServe(srv.Addr, nil)
-	fmt.Println("Error is ", http.ListenAndServe(srv.Addr, nil))
+	srv.ListenAndServe()
+	fmt.Println("Error is ", srv.ListenAndServe())
 }
-
-// func testHandler(w http.ResponseWriter, r *http.Request) {
-// 	respondWithJSON(w, 200, database.User{
-// 		Email: "test@browser.com",
-// 	})
-// }
-
-// func testErrHandler(w http.ResponseWriter, r *http.Request) {
-// 	respondWithError(w, 500, errors.New("Server error"))
-// }
 
 func respondWithError(w http.ResponseWriter, code int, err error) {
 	respondWithJSON(w, code, errorBody{
@@ -86,16 +69,4 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 
 	w.WriteHeader(code)
 	w.Write(response)
-}
-
-func (apiCfg apiConfig) endpointUsersHandler(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodGet:
-	case http.MethodPost:
-		apiCfg.handlerCreateUser(w, r)
-	case http.MethodPut:
-	case http.MethodDelete:
-	default:
-		respondWithError(w, 404, errors.New("Unsupported API method call"))
-	}
 }

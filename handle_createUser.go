@@ -26,6 +26,7 @@ func (apiCfg apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Request
 
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, err)
+		return
 	}
 
 	respondWithJSON(w, http.StatusCreated, newUser)
