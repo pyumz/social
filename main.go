@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	database "github.com/pyumz/social/internal"
+	"github.com/pyumz/social/internal/database"
 )
 
 type errorBody struct {
