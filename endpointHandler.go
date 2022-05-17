@@ -19,3 +19,16 @@ func (apiCfg apiConfig) endpointUsersHandler(w http.ResponseWriter, r *http.Requ
 		respondWithError(w, 404, errors.New("Unsupported API method call"))
 	}
 }
+
+func (apiCfg apiConfig) endpointPostsHanlder(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodPost:
+		apiCfg.handlerCreatePost(w, r)
+	case http.MethodDelete:
+		apiCfg.handlerDeletePost(w, r)
+	case http.MethodGet:
+		apiCfg.handlerRetrievePosts(w, r)
+	default:
+		respondWithError(w, 404, errors.New("Unsupported API method call"))
+	}
+}
